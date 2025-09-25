@@ -1,6 +1,6 @@
 // SaleList.jsx
 import React from 'react';
-import './SaleList.css'
+import './styles/SaleList.css'
 
 function SaleItem({ image, title, type, price }) {
   return (
