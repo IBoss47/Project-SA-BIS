@@ -71,3 +71,29 @@
   flex-direction: column;
   align-items: center;
 }
+
+.main-content {
+  display: flex;
+  margin: 20px 40px;
+  min-height: 80vh;
+}
+
+.filter-section {
+  width: 220px;
+  margin-right: 32px;
+  position: sticky;
+  top: 80px;
+}
+
+.product-section {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.filter-section {
+  position: sticky;
+  top: 160px;
+  z-index: 2;
+}

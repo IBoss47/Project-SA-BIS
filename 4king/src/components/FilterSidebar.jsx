@@ -2,7 +2,7 @@ import React from 'react';
 
 function FilterSidebar() {
   return (
-    <div className="filter-sidebar">
+    <div className="filter-section">
       <h3>Filter</h3>
       {/* ใส่ form/option filter ตามที่ต้องการ */}
       <label>
