@@ -1,18 +1,20 @@
-import {BrowserRouter as Router} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import SaleList from './components/SaleList';
 import Footer from './components/Footer';
 import FilterSidebar from './components/FilterSidebar';
 import Homepage from './pages/Homepage';
+import SellItem from './pages/SellItem';
 import React from 'react';
 function App() {
   return (
     <Router>
       <div className="App">
-        
-        <Homepage />
-        
+        <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/sellitem" element={<SellItem />} />
+        </Routes>
       </div>
     </Router>
     
