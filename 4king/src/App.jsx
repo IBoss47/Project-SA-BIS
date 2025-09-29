@@ -6,16 +6,27 @@ import Footer from './components/Footer';
 import FilterSidebar from './components/FilterSidebar';
 import Homepage from './pages/Homepage';
 import SellItem from './pages/SellItem';
-import SalePage from './pages/SalePage';
 import React from 'react';
+import SellListPage from './pages/SellListPage';
 function App() {
   return (
+    // <Router>
+    //   <div className="App">
+    //     <Routes>
+    //         <Route path="/sellitem" element={<SellItem />} />
+    //         <Route path="/books" element={<SellListPage />} />
+    //     </Routes>
+    //   </div>
+    // </Router>
     <Router>
-      <div className="App">
-        <Routes>
-            <Route path="/" element={<SalePage />} />
-            <Route path="/sellitem" element={<SellItem />} />
-        </Routes>
+      <div className="flex flex-col min-h-screen">
+        <main className="flex-grow bg-gray-50">
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/books" element={<SellListPage />} />
+
+          </Routes>
+        </main>
       </div>
     </Router>
     
