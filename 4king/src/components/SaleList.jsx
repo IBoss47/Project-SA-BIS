@@ -88,7 +88,8 @@ function SaleList() {
       title: 'Good vibe good life',
       type: 'E-book',
       price: '฿545'
-    }
+    },
+    
   ];
 
   return (
