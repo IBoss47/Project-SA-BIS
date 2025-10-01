@@ -38,11 +38,11 @@
   }
 }
 
-.container {
+/* .container {
   display: flex;
   flex-direction: row;
   height: 100vh;
-}
+} */
 
 .filter-sidebar {
   width: 220px;
