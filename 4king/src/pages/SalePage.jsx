@@ -5,5 +5,6 @@ const SalePage = () => {
       transition-colors">
       Click me
     </button>
-}
-export SalePage;
+};
+
+export default SalePage;
