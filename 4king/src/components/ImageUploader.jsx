@@ -3,6 +3,7 @@ import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from 
 import { arrayMove, SortableContext, horizontalListSortingStrategy } from "@dnd-kit/sortable";
 import SortableItem from "./SortableItem";
 
+
 const ImageUploader = () =>{
   const [images, setImages] = useState([]);
   const sensors = useSensors(useSensor(PointerSensor));
