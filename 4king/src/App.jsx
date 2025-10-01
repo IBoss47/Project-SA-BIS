@@ -9,8 +9,9 @@ import Homepage from './pages/Homepage';
 import SellItem from './pages/SellItem';
 import React from 'react';
 import SellListPage from './pages/SellListPage';
+import MyStorePage from './pages/MyStorePage';
 function App() {
-  return (
+  return (  
     // <Router>
     //   <div className="App">
     //     <Routes>
@@ -26,6 +27,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/books" element={<SellListPage />} />
+            
+            <Route path="/mystore" element={<MyStorePage/>}/>
 
           </Routes>
         </main>
