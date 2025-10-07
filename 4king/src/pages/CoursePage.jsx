@@ -30,7 +30,7 @@ const CoursePage = () => {
       setLoading(false);
     }, 1000);
   }, []);
-
+      
   const handleSearch = (searchTerm) => {
     const filtered = books.filter(book => 
       book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
