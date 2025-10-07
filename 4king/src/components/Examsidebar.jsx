@@ -1,8 +1,48 @@
+import React, { useState } from "react";
+
+const QUESTIONS = [
+  {
+    question: "Mr Tanaka...",
+    choices: [
+      "is a musician",    // index 0
+      "is American",      // index 1
+      "can speak Spanish" // index 2
+    ],
+    answer: 0, // index ของคำตอบที่ถูกต้อง (A)
+  },
+  // เพิ่มข้อใหม่ได้ เช่น
+  // {
+  //   question: "Lisa ...",
+  //   choices: [...],
+  //   answer: 2
+  // }
+];
 
 export default function Examsidebar() {
+  const [userAnswers, setUserAnswers] = useState(Array(QUESTIONS.length).fill(null));
+  const [showResult, setShowResult] = useState(false);
+
+  const handleSelect = (qIndex, cIndex) => {
+    setUserAnswers((prev) => {
+      const copy = [...prev];
+      copy[qIndex] = cIndex;
+      return copy;
+    });
+  };
+
+  const checkScore = () => {
+    setShowResult(true);
+  };
+
+  const score = userAnswers.reduce(
+    (sum, ans, idx) => ans === QUESTIONS[idx].answer ? sum + 1 : sum,
+    0
+  );
+
   return (
     <div className="max-w-2xl mx-auto bg-white shadow-md rounded-2xl p-6 mt-10 space-y-6">
-      {/* YouTube Video Section */}
+      {/* ... your video and caption ... */}
+        {/* YouTube Video Section */}
       <div className="aspect-video rounded-xl overflow-hidden shadow">
         <iframe
           className="w-full h-full"
@@ -12,48 +52,67 @@ export default function Examsidebar() {
           allowFullScreen
         ></iframe>
       </div>
-
-      {/* Caption */}
-      <div className="text-center text-gray-600 text-sm">
-        See the full list of{" "}
-        <a href="#" className="text-yellow-500 font-medium hover:underline">
-          A1 listening tests
-        </a>
-      </div>
-
-      <hr className="border-t border-gray-200 my-4" />
-
-      {/* Questions Section */}
-      <div>
-        <h2 className="text-center text-lg font-semibold text-gray-700 mb-4">
-          Questions
-        </h2>
-
-        {/* Question 1 */}
-        <div className="bg-yellow-50 p-4 rounded-xl shadow-sm">
+      {QUESTIONS.map((q, qIdx) => (
+        <div key={qIdx} className="bg-yellow-50 p-4 rounded-xl shadow-sm">
           <div className="flex items-center mb-3">
             <span className="bg-yellow-400 text-white font-bold w-6 h-6 flex items-center justify-center rounded-full mr-2">
-              1
+              {qIdx + 1}
             </span>
-            <p className="font-medium text-gray-700">Mr Tanaka...</p>
+            <p className="font-medium text-gray-700">{q.question}</p>
           </div>
-
           <div className="space-y-2">
-            <label className="block border border-gray-200 rounded-lg p-2 hover:bg-gray-50 cursor-pointer">
-              <input type="radio" name="q1" className="mr-2 accent-yellow-500" />
-              A. is a musician
-            </label>
-            <label className="block border border-gray-200 rounded-lg p-2 hover:bg-gray-50 cursor-pointer">
-              <input type="radio" name="q1" className="mr-2 accent-yellow-500" />
-              B. is American
-            </label>
-            <label className="block border border-gray-200 rounded-lg p-2 hover:bg-gray-50 cursor-pointer">
-              <input type="radio" name="q1" className="mr-2 accent-yellow-500" />
-              C. can speak Spanish
-            </label>
+            {q.choices.map((choice, cIdx) => {
+              // เช็คเฉลย
+              let choiceColor = "";
+              if (showResult) {
+                if (q.answer === cIdx) {
+                  choiceColor = "border-green-400 bg-green-50"; // ถูก-ตอบถูก
+                } else if (userAnswers[qIdx] === cIdx) {
+                  choiceColor = "border-red-400 bg-red-50"; // ตอบผิด
+                }
+              }
+              return (
+                <label
+                  key={cIdx}
+                  className={`block border border-gray-200 rounded-lg p-2 hover:bg-gray-50 cursor-pointer ${choiceColor}`}
+                >
+                  <input
+                    type="radio"
+                    name={`q${qIdx}`}
+                    className="mr-2 accent-yellow-500"
+                    checked={userAnswers[qIdx] === cIdx}
+                    onChange={() => handleSelect(qIdx, cIdx)}
+                    disabled={showResult}
+                  />
+                  {String.fromCharCode(65 + cIdx)}. {choice}
+                </label>
+              );
+            })}
           </div>
+          {/* เฉลยแต่ละข้อ */}
+          {showResult && (
+            <div className="mt-2 text-sm">
+              {userAnswers[qIdx] === QUESTIONS[qIdx].answer
+                ? <span className="text-green-600">ถูกต้อง!</span>
+                : <span className="text-red-600">ผิด, คำตอบที่ถูกคือ {String.fromCharCode(65 + q.answer)}</span>
+              }
+            </div>
+          )}
         </div>
-      </div>
+      ))}
+
+      {!showResult ? (
+        <button
+          onClick={checkScore}
+          className="w-full mt-4 py-2 bg-yellow-500 text-white rounded-lg text-lg hover:bg-yellow-600 transition"
+        >
+          ตรวจคำตอบ
+        </button>
+      ) : (
+        <div className="mt-4 text-center text-xl font-semibold text-viridian-700">
+          คะแนนของคุณ: {score} / {QUESTIONS.length}
+        </div>
+      )}
     </div>
   );
 }
