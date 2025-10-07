@@ -20,7 +20,7 @@ const CourseList = ({ book }) => {
   };
 
   return (
-    <Link to={`/books/${book.id}`} className="block">
+    <Link to={`/Exam1`} className="block">
       <div className="bg-white rounded-xl shadow-lg overflow-hidden group 
         hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
         
