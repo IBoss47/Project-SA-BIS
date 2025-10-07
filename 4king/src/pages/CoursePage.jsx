@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import BookCard from '../components/SaleList';
+import CourseList from '../components/CourseList';
 import SearchBar from '../components/SearchBar';
 import FilterSidebar from '../components/FilterSidebar';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ChevronDownIcon } from '@heroicons/react/outline';
 import { getAllBooks } from '../data/booksData';
 
-const SellListPage = () => {
+const CoursePage = () => {
   const [books, setBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [sortBy, setSortBy] = useState('newest');
@@ -101,44 +101,23 @@ const SellListPage = () => {
                 <SearchBar onSearch={handleSearch} />
               </div>
               
-              {/* Category Filter */}
-              <select 
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none 
-                  focus:ring-2 focus:ring-viridian-500 cursor-pointer"
-                value={selectedCategory}
-                onChange={(e) => handleCategoryFilter(e.target.value)}
-              >
-                <option value="midterm">Midterm</option>
-                <option value="final">Final</option>
-                
-              </select>
               
-              {/* Sort */}
-              <select 
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none 
-                  focus:ring-2 focus:ring-viridian-500 cursor-pointer"
-                value={sortBy}
-                onChange={(e) => handleSort(e.target.value)}
-              >
-                <option value="newest">ใหม่ล่าสุด</option>
-                <option value="price-low">ราคาต่ำ-สูง</option>
-                <option value="price-high">ราคาสูง-ต่ำ</option>
-                <option value="popular">ยอดนิยม</option>
-              </select>
+              
+              
             </div>
             
             {/* Results count */}
             
           </div>
           <div className="mt-4 text-sm text-gray-600">
-              พบหนังสือ {filteredBooks.length} เล่ม
+              พบหลักสูตรการอบรม {filteredBooks.length} หลักสูตร
               {selectedCategory !== 'all' && ` ในหมวด ${selectedCategory}`}
           </div>
           {/* Books Grid */}
           {currentBooks.length > 0 ? (
-            <div className="mt-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="mt-3 grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6">
               {currentBooks.map(book => (
-                <BookCard key={book.id} book={book} />
+                <CourseList key={book.id} book={book} />
               ))}
             </div>
           ) : (
@@ -207,4 +186,4 @@ const SellListPage = () => {
   );
 };
 
-export default SellListPage;
+export default CoursePage;

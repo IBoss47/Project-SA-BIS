@@ -3,20 +3,18 @@ import { ChevronDownIcon } from '@heroicons/react/solid';
 
 // วิชาแต่ละปี ตัวอย่าง
 const subjectOptions = {
-  "ปี 1": [
-    "511 110 : แคลคูลัสสําหรับการวิเคราะห์ข้อมูล 1", 
-    "515 104 : สถิติสําหรับคอมพิวเตอร์ ", 
-    "517 111 : การเขียนโปรแกรมคอมพิวเตอร์สําหรับนักวิทยาการข้อมูล",
-    "511 111 : แคลคูลัสสําหรับการวิเคราะห์ข้อมูล 2",
-    "515 271 : ความน่าจะเป็นสําหรับวิทยาการข้อมูล",
-    "522 151 : พื้นฐานวิทยาการข้อมูล"
+  "Waiter": [
+    "ตรวจเช็ค Order", 
+    "ทักษะการพูดคุยกับลูกค้า", 
+    "กฏของพนักงาน",
+    "ทักษะที่ควรมี"
   ],
-  "ปี 2": ["สถิติ", "เคมีพื้นฐาน", "ภาษาอังกฤษ"],
-  "ปี 3": ["ชีววิทยา", "แคลคูลัส", "ประวัติศาสตร์"],
-  "ปี 4": ["วิจัย", "การออกแบบระบบ", "สัมมนา"]
+  "Cashier": ["สถิติ", "เคมีพื้นฐาน", "ภาษาอังกฤษ"],
+  "Service": ["ชีววิทยา", "แคลคูลัส", "ประวัติศาสตร์"],
+  "Barista": ["วิจัย", "การออกแบบระบบ", "สัมมนา"]
 };
 
-const yearList = ["ปี 1", "ปี 2", "ปี 3", "ปี 4"];
+const yearList = ["Waiter", "Cashier", "Service", "Barista"];
 
 export default function FilterSidebar() {
   const [openSection, setOpenSection] = useState({ subject: true, course: true });
@@ -56,7 +54,7 @@ export default function FilterSidebar() {
           onClick={() => toggleSection("subject")}
           className="w-full flex justify-between items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium"
         >
-          ชั้นปี
+          ตำแหน่งงาน
           <ChevronDownIcon
             className={`h-5 w-5 transform transition-transform duration-300
               ${openSection.subject ? 'rotate-180' : ''}
@@ -88,7 +86,7 @@ export default function FilterSidebar() {
           onClick={() => toggleSection("course")}
           className="w-full flex justify-between items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium"
         >
-          รายวิชา
+          บทเรียนการอบรม
           <ChevronDownIcon
             className={`h-5 w-5 transform transition-transform duration-300
               ${openSection.course ? 'rotate-180' : ''}
